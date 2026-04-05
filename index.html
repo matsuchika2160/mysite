@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>★★★ iPhone 5s 最高傑作 ★★★</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+    :root {
+      --neon-pink: #ff00ff;
+      --neon-cyan: #00ffff;
+      --neon-yellow: #ffff00;
+      --neon-green: #00ff00;
+      --neon-orange: #ff6600;
+      --dark-bg: #000011;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background-color: var(--dark-bg);
+      background-image:
+        radial-gradient(circle at 20% 50%, rgba(255,0,255,0.08) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(0,255,255,0.08) 0%, transparent 50%);
+      color: #fff;
+      font-family: 'Press Start 2P', 'MS Gothic', monospace;
+      overflow-x: hidden;
+      cursor: crosshair;
+    }
+
+    /* ===== 流れ星背景 ===== */
+    .stars {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      pointer-events: none;
+      z-index: 0;
+    }
+    .star {
+      position: absolute;
+      width: 2px; height: 2px;
+      background: #fff;
+      border-radius: 50%;
+      animation: twinkle var(--dur, 2s) infinite alternate;
+    }
+    @keyframes twinkle {
+      from { opacity: 0.2; transform: scale(1); }
+      to   { opacity: 1;   transform: scale(1.8); }
+    }
+
+    /* ===== マーキー風バナー ===== */
+    .marquee-wrap {
+      width: 100%;
+      overflow: hidden;
+      background: repeating-linear-gradient(90deg, #ff00ff, #ff6600, #ffff00, #00ff00, #00ffff, #ff00ff);
+      padding: 6px 0;
+      position: relative;
+      z-index: 10;
+    }
+    .marquee-track {
+      display: flex;
+      width: max-content;
+      animation: marquee 18s linear infinite;
+    }
+    .marquee-track span {
+      font-size: 11px;
+      color: #000;
+      font-weight: bold;
+      padding: 0 24px;
+      letter-spacing: 2px;
+      font-family: monospace;
+    }
+    @keyframes marquee {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
+
+    /* ===== ヒーローセクション ===== */
+    .hero {
+      position: relative;
+      z-index: 5;
+      text-align: center;
+      padding: 48px 16px 32px;
+    }
+
+    .hero-badge {
+      display: inline-block;
+      background: #ffff00;
+      color: #000;
+      font-size: 9px;
+      padding: 4px 12px;
+      margin-bottom: 16px;
+      animation: blink 0.7s step-start infinite;
+      letter-spacing: 1px;
+    }
+    @keyframes blink {
+      50% { opacity: 0; }
+    }
+
+    .hero-title {
+      font-size: clamp(22px, 5vw, 52px);
+      line-height: 1.4;
+      background: linear-gradient(90deg, #ff00ff, #00ffff, #ffff00, #ff00ff);
+      background-size: 300% auto;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: shine 3s linear infinite;
+      filter: drop-shadow(0 0 12px #ff00ff);
+      text-shadow: none;
+    }
+    @keyframes shine {
+      from { background-position: 0% center; }
+      to   { background-position: 300% center; }
+    }
+
+    .hero-sub {
+      margin-top: 12px;
+      font-size: 8px;
+      color: var(--neon-cyan);
+      letter-spacing: 2px;
+      animation: flicker 4s infinite;
+    }
+    @keyframes flicker {
+      0%,95%,100% { opacity: 1; }
+      96%,99%     { opacity: 0.1; }
+    }
+
+    /* ===== iPhone 画像エリア ===== */
+    .phone-showcase {
+      position: relative;
+      z-index: 5;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 32px 16px;
+      gap: 32px;
+      flex-wrap: wrap;
+    }
+
+    .phone-frame {
+      position: relative;
+      width: 160px;
+      animation: float 3s ease-in-out infinite;
+    }
+    .phone-frame:nth-child(2) { animation-delay: -1s; animation-duration: 3.5s; }
+    .phone-frame:nth-child(3) { animation-delay: -2s; animation-duration: 4s; }
+
+    @keyframes float {
+      0%,100% { transform: translateY(0px) rotate(-2deg); }
+      50%      { transform: translateY(-16px) rotate(2deg); }
+    }
+
+    .phone-body {
+      width: 120px;
+      height: 210px;
+      background: linear-gradient(145deg, #e8e8e8, #b0b0b0);
+      border-radius: 18px;
+      border: 3px solid #888;
+      position: relative;
+      margin: 0 auto;
+      box-shadow:
+        0 0 20px var(--color, #ff00ff),
+        0 0 60px var(--color, #ff00ff),
+        inset 0 2px 4px rgba(255,255,255,0.8);
+    }
+    .phone-frame:nth-child(1) .phone-body { --color: #ff00ff; border-color: #ff00ff; background: linear-gradient(145deg, #f0d0f0, #b090b0); }
+    .phone-frame:nth-child(2) .phone-body { --color: #c0c0c0; border-color: #aaa; }
+    .phone-frame:nth-child(3) .phone-body { --color: #00ff88; border-color: #00aa55; background: linear-gradient(145deg, #c8f0d8, #88b898); }
+
+    .phone-screen {
+      position: absolute;
+      top: 28px; left: 10px; right: 10px;
+      height: 130px;
+      background: linear-gradient(180deg, #1a1a2e, #16213e, #0f3460);
+      border-radius: 6px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-size: 5px;
+      color: #fff;
+    }
+    .screen-text {
+      animation: screenPulse 2s ease-in-out infinite;
+      text-align: center;
+      line-height: 1.8;
+    }
+    @keyframes screenPulse {
+      0%,100% { opacity: 0.8; }
+      50%      { opacity: 1; text-shadow: 0 0 8px #00ffff; }
+    }
+
+    .phone-home-btn {
+      width: 24px; height: 24px;
+      border-radius: 50%;
+      background: radial-gradient(circle, #ddd, #999);
+      border: 2px solid #888;
+      position: absolute;
+      bottom: 10px;
+      left: 50%; transform: translateX(-50%);
+      box-shadow: inset 0 1px 3px rgba(255,255,255,0.6);
+    }
+    .phone-cam {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: #222;
+      position: absolute;
+      top: 12px; left: 50%; transform: translateX(-50%);
+      box-shadow: 0 0 4px #00ffff;
+    }
+
+    .phone-label {
+      text-align: center;
+      margin-top: 12px;
+      font-size: 7px;
+      color: var(--neon-yellow);
+      letter-spacing: 1px;
+    }
+
+    /* ===== スペック表 ===== */
+    .section {
+      position: relative;
+      z-index: 5;
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 32px 16px;
+    }
+
+    .section-title {
+      font-size: 13px;
+      color: var(--neon-cyan);
+      text-align: center;
+      margin-bottom: 24px;
+      text-shadow: 0 0 20px var(--neon-cyan);
+      animation: pulse-glow 2s ease-in-out infinite;
+    }
+    @keyframes pulse-glow {
+      0%,100% { text-shadow: 0 0 10px var(--neon-cyan); }
+      50%      { text-shadow: 0 0 40px var(--neon-cyan), 0 0 80px var(--neon-cyan); }
+    }
+
+    .spec-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 16px;
+    }
+
+    .spec-card {
+      border: 2px solid var(--card-color, #ff00ff);
+      border-radius: 4px;
+      padding: 16px;
+      background: rgba(255, 0, 255, 0.05);
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .spec-card:hover {
+      transform: scale(1.04) rotate(-0.5deg);
+      box-shadow: 0 0 30px var(--card-color, #ff00ff);
+    }
+    .spec-card::before {
+      content: '';
+      position: absolute;
+      top: -2px; left: -100%;
+      width: 60%;
+      height: calc(100% + 4px);
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+      animation: scan 3s linear infinite;
+    }
+    @keyframes scan {
+      from { left: -60%; }
+      to   { left: 160%; }
+    }
+    .spec-card:nth-child(1) { --card-color: #ff00ff; background: rgba(255,0,255,0.05); }
+    .spec-card:nth-child(2) { --card-color: #00ffff; background: rgba(0,255,255,0.05); }
+    .spec-card:nth-child(3) { --card-color: #ffff00; background: rgba(255,255,0,0.05); }
+    .spec-card:nth-child(4) { --card-color: #00ff88; background: rgba(0,255,136,0.05); }
+    .spec-card:nth-child(5) { --card-color: #ff6600; background: rgba(255,102,0,0.05); }
+    .spec-card:nth-child(6) { --card-color: #cc44ff; background: rgba(204,68,255,0.05); }
+
+    .spec-icon {
+      font-size: 24px;
+      margin-bottom: 8px;
+    }
+    .spec-name {
+      font-size: 7px;
+      color: #aaa;
+      margin-bottom: 6px;
+      letter-spacing: 1px;
+    }
+    .spec-value {
+      font-size: 10px;
+      color: #fff;
+      line-height: 1.6;
+    }
+
+    /* ===== カウンター風バッジ ===== */
+    .counter-section {
+      position: relative;
+      z-index: 5;
+      text-align: center;
+      padding: 24px 16px;
+      border-top: 1px dashed #333;
+      border-bottom: 1px dashed #333;
+      margin: 0 16px;
+    }
+    .counter-label {
+      font-size: 7px;
+      color: #888;
+      margin-bottom: 8px;
+      letter-spacing: 2px;
+    }
+    .counter-num {
+      font-size: 32px;
+      background: linear-gradient(90deg, #ffff00, #ff6600);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      text-shadow: none;
+      filter: drop-shadow(0 0 8px #ff6600);
+    }
+
+    /* ===== 横スクロールバナー ===== */
+    .rainbow-bar {
+      height: 4px;
+      background: linear-gradient(90deg, #ff0000, #ff7700, #ffff00, #00ff00, #0000ff, #8b00ff, #ff0000);
+      background-size: 200% auto;
+      animation: rainbow-move 2s linear infinite;
+    }
+    @keyframes rainbow-move {
+      from { background-position: 0% center; }
+      to   { background-position: 200% center; }
+    }
+
+    /* ===== 特徴セクション ===== */
+    .features {
+      position: relative;
+      z-index: 5;
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 32px 16px;
+    }
+
+    .feature-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      margin-bottom: 24px;
+      padding: 16px;
+      border-left: 4px solid var(--f-color, #ff00ff);
+      background: rgba(255,255,255,0.02);
+      animation: slideIn 0.5s ease both;
+    }
+    .feature-item:nth-child(1) { --f-color: #ff00ff; }
+    .feature-item:nth-child(2) { --f-color: #00ffff; animation-delay: 0.1s; }
+    .feature-item:nth-child(3) { --f-color: #ffff00; animation-delay: 0.2s; }
+    .feature-item:nth-child(4) { --f-color: #00ff88; animation-delay: 0.3s; }
+
+    @keyframes slideIn {
+      from { opacity: 0; transform: translateX(-30px); }
+      to   { opacity: 1; transform: translateX(0); }
+    }
+
+    .feature-emoji { font-size: 28px; flex-shrink: 0; }
+    .feature-text { font-size: 8px; line-height: 2; color: #ddd; }
+    .feature-text strong { color: var(--f-color, #ff00ff); font-size: 9px; }
+
+    /* ===== フッター ===== */
+    footer {
+      position: relative;
+      z-index: 5;
+      text-align: center;
+      padding: 32px 16px 48px;
+      font-size: 7px;
+      color: #444;
+      line-height: 2.5;
+    }
+    footer a { color: #666; text-decoration: none; }
+
+    .footer-badge {
+      display: inline-block;
+      border: 1px solid #333;
+      padding: 4px 10px;
+      margin: 4px;
+      font-size: 6px;
+      color: #555;
+      animation: none;
+    }
+    .footer-badge:hover { border-color: #ff00ff; color: #ff00ff; }
+
+    /* ===== クリックエフェクト ===== */
+    .ripple {
+      position: fixed;
+      border-radius: 50%;
+      border: 2px solid #ff00ff;
+      pointer-events: none;
+      z-index: 9999;
+      animation: rippleOut 0.6s ease-out forwards;
+    }
+    @keyframes rippleOut {
+      from { width: 0; height: 0; opacity: 1; transform: translate(-50%,-50%); }
+      to   { width: 80px; height: 80px; opacity: 0; transform: translate(-50%,-50%); }
+    }
+  </style>
+</head>
+<body>
+
+<!-- 星背景 -->
+<div class="stars" id="stars"></div>
+
+<!-- マーキー -->
+<div class="marquee-wrap">
+  <div class="marquee-track" id="marquee"></div>
+</div>
+
+<!-- ヒーロー -->
+<section class="hero">
+  <div class="hero-badge">★ NEW ARRIVAL 2013 ★</div>
+  <h1 class="hero-title">iPhone 5s<br>完全紹介</h1>
+  <p class="hero-sub">-- THE MOST ADVANCED SMARTPHONE EVER --</p>
+</section>
+
+<div class="rainbow-bar"></div>
+
+<!-- 端末ショーケース -->
+<div class="phone-showcase">
+  <div class="phone-frame">
+    <div class="phone-body">
+      <div class="phone-cam"></div>
+      <div class="phone-screen">
+        <div class="screen-text">✨ GOLD ✨<br>最高峰</div>
+      </div>
+      <div class="phone-home-btn"></div>
+    </div>
+    <div class="phone-label">✨ ゴールド ✨</div>
+  </div>
+  <div class="phone-frame">
+    <div class="phone-body">
+      <div class="phone-cam"></div>
+      <div class="phone-screen">
+        <div class="screen-text">⚡ SILVER ⚡<br>定番</div>
+      </div>
+      <div class="phone-home-btn"></div>
+    </div>
+    <div class="phone-label">⚡ シルバー ⚡</div>
+  </div>
+  <div class="phone-frame">
+    <div class="phone-body">
+      <div class="phone-cam"></div>
+      <div class="phone-screen">
+        <div class="screen-text">🌿 GREEN 🌿<br>限定</div>
+      </div>
+      <div class="phone-home-btn"></div>
+    </div>
+    <div class="phone-label">🌿 スペースグレイ 🌿</div>
+  </div>
+</div>
+
+<div class="rainbow-bar"></div>
+
+<!-- アクセスカウンター風 -->
+<div class="counter-section">
+  <div class="counter-label">★ THIS PAGE HAS BEEN VISITED ★</div>
+  <div class="counter-num" id="counter">0000000</div>
+  <div class="counter-label">-- TIMES --</div>
+</div>
+
+<!-- スペック -->
+<section class="section">
+  <h2 class="section-title">📟 SPEC 完全解説 📟</h2>
+  <div class="spec-grid">
+    <div class="spec-card">
+      <div class="spec-icon">⚙️</div>
+      <div class="spec-name">CPU</div>
+      <div class="spec-value">Apple A7<br>64bit 史上初！<br>世界が震えた</div>
+    </div>
+    <div class="spec-card">
+      <div class="spec-icon">📱</div>
+      <div class="spec-name">ディスプレイ</div>
+      <div class="spec-value">4インチ<br>Retina<br>1136×640</div>
+    </div>
+    <div class="spec-card">
+      <div class="spec-icon">📷</div>
+      <div class="spec-name">カメラ</div>
+      <div class="spec-value">800万画素<br>スローモーション<br>120fps対応</div>
+    </div>
+    <div class="spec-card">
+      <div class="spec-icon">🔐</div>
+      <div class="spec-name">Touch ID</div>
+      <div class="spec-value">指紋センサー<br>世界初搭載！<br>革命的機能</div>
+    </div>
+    <div class="spec-card">
+      <div class="spec-icon">🔋</div>
+      <div class="spec-name">バッテリー</div>
+      <div class="spec-value">1560mAh<br>通話10時間<br>待受250時間</div>
+    </div>
+    <div class="spec-card">
+      <div class="spec-icon">🌐</div>
+      <div class="spec-name">通信</div>
+      <div class="spec-value">LTE対応<br>Wi-Fi 802.11ac<br>Bluetooth 4.0</div>
+    </div>
+  </div>
+</section>
+
+<div class="rainbow-bar"></div>
+
+<!-- 特徴 -->
+<section class="features">
+  <h2 class="section-title">💫 なぜ最高なのか 💫</h2>
+
+  <div class="feature-item">
+    <div class="feature-emoji">🔐</div>
+    <div class="feature-text">
+      <strong>Touch ID — 指紋認証の夜明け</strong><br>
+      ホームボタンに指を乗せるだけでロック解除。2013年当時、これは魔法だった。
+      その後のスマートフォン業界全体が追いかけた革命的機能。
+    </div>
+  </div>
+  <div class="feature-item">
+    <div class="feature-emoji">⚡</div>
+    <div class="feature-text">
+      <strong>64bit A7チップ — 時代を半周先へ</strong><br>
+      スマートフォン初の64bitプロセッサ。競合他社が「なぜ必要？」と言っていた翌年には全員が追従した。
+      Appleの先見性が光る一手。
+    </div>
+  </div>
+  <div class="feature-item">
+    <div class="feature-emoji">📷</div>
+    <div class="feature-text">
+      <strong>スローモーション動画 — 誰でも映画監督</strong><br>
+      120fpsのスローモーション撮影を一般消費者向けに解放。
+      水が弾ける瞬間、犬が走る瞬間、日常が芸術になった。
+    </div>
+  </div>
+  <div class="feature-item">
+    <div class="feature-emoji">🎨</div>
+    <div class="feature-text">
+      <strong>ゴールドカラー — 欲望に正直なデザイン</strong><br>
+      「高級感を出したい」という人類の本能に素直に応えたカラー。
+      発売直後から品薄が続き、転売価格が跳ね上がった伝説の一台。
+    </div>
+  </div>
+</section>
+
+<!-- フッター -->
+<footer>
+  <div class="rainbow-bar" style="margin-bottom:24px;"></div>
+  <p>★ iPhone 5s ★ 永遠の名機 ★</p>
+  <p style="margin-top:8px;">Released: September 20, 2013</p>
+  <br>
+  <div>
+    <span class="footer-badge">🌐 HTML 4.01</span>
+    <span class="footer-badge">🎨 CSS3</span>
+    <span class="footer-badge">⚡ PURE JS</span>
+    <span class="footer-badge">📱 MOBILE OK</span>
+    <span class="footer-badge">🔥 NETSCAPE推奨</span>
+  </div>
+  <br>
+  <p style="color:#222;">© 2026 老人会インターネット同好会 All Rights Reserved</p>
+</footer>
+
+<script>
+  // 星を生成
+  const starsEl = document.getElementById('stars');
+  for (let i = 0; i < 120; i++) {
+    const s = document.createElement('div');
+    s.className = 'star';
+    s.style.cssText = `
+      left: ${Math.random()*100}%;
+      top: ${Math.random()*100}%;
+      --dur: ${1.5 + Math.random()*3}s;
+      animation-delay: ${-Math.random()*4}s;
+      width: ${Math.random() > 0.9 ? 3 : 2}px;
+      height: ${Math.random() > 0.9 ? 3 : 2}px;
+      opacity: ${0.3 + Math.random()*0.7};
+    `;
+    starsEl.appendChild(s);
+  }
+
+  // マーキーテキスト
+  const marqueeEl = document.getElementById('marquee');
+  const msg = '★ iPhone 5s 最強伝説 ★ Touch ID革命 ★ 64bit世界初 ★ スローモーション神 ★ ゴールド品薄 ★ 老人会公認端末 ★ ';
+  let text = '';
+  for (let i = 0; i < 6; i++) text += `<span>${msg}</span>`;
+  marqueeEl.innerHTML = text;
+
+  // カウンター演出
+  const counterEl = document.getElementById('counter');
+  const target = 1234567 + Math.floor(Math.random() * 9999);
+  let cur = 0;
+  const step = Math.ceil(target / 80);
+  const timer = setInterval(() => {
+    cur = Math.min(cur + step, target);
+    counterEl.textContent = String(cur).padStart(7, '0');
+    if (cur >= target) clearInterval(timer);
+  }, 20);
+
+  // クリック波紋
+  document.addEventListener('click', (e) => {
+    const colors = ['#ff00ff','#00ffff','#ffff00','#00ff88','#ff6600'];
+    const r = document.createElement('div');
+    r.className = 'ripple';
+    r.style.cssText = `left:${e.clientX}px;top:${e.clientY}px;border-color:${colors[Math.floor(Math.random()*colors.length)]};`;
+    document.body.appendChild(r);
+    setTimeout(() => r.remove(), 700);
+  });
+</script>
+</body>
+</html>
